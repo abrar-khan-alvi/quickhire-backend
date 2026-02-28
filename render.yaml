@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: quickhire-backend
+    runtime: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: MONGO_URI
+        sync: false # Set this in the Render Dashboard safely
+      - key: PORT
+        value: 10000
+    plan: free
