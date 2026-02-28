@@ -37,6 +37,19 @@ const submitApplication = async (req, res, next) => {
     }
 };
 
+// @desc    Get all applications
+// @route   GET /api/applications
+// @access  Public (Admin)
+const getApplications = async (req, res, next) => {
+    try {
+        const applications = await Application.find().populate('jobId', 'title company').sort('-appliedAt');
+        res.status(200).json(applications);
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
     submitApplication,
+    getApplications,
 };
